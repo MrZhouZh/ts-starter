@@ -1,0 +1,69 @@
+{
+  "name": "pkg-name",
+  "type": "module",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "packageManager": "pnpm@8.6.10",
+  "description": "some description",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Jace Chow <17600330793@sina.cn>",
+  "homepage": "https://github.com/MrZhouZh/pkg-name#readme",
+  "repository": {
+    "type": "git",
+    "url": "git*https://github.com/MrZhouZh/pkg-name.git"
+  },
+  "bugs": "https://github.com/MrZhouZh/pkg-name/issues",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest -u"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.39.8",
+    "@antfu/ni": "^0.21.5",
+    "@types/node": "^20.4.5",
+    "bumpp": "^9.1.1",
+    "eslint": "^8.46.0",
+    "esno": "^0.17.0",
+    "pnpm": "^8.6.10",
+    "rimraf": "^5.0.1",
+    "simple-git-hooks": "^2.9.0",
+    "typescript": "^5.1.6",
+    "unbuild": "^1.2.1",
+    "vite": "^4.4.7",
+    "vitest": "^0.33.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
